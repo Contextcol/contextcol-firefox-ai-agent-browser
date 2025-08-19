@@ -11,12 +11,28 @@ pref("startup.homepage_welcome_url.additional", "");
 pref("app.update.interval", 86400); // 24 hours
 // Give the user x seconds to react before showing the big UI. default=24 hours
 pref("app.update.promptWaitTime", 86400);
-// URL user can browse to manually if for some reason all update installation
-// attempts fail.
-pref("app.update.url.manual", "https://nightly.mozilla.org");
-// A default value for the "More information about this update" link
-// supplied in the "An update is available" page of the update wizard.
-pref("app.update.url.details", "https://nightly.mozilla.org");
+// app.update.url.manual: URL user can browse to manually if for some reason
+// all update installation attempts fail.
+// app.update.url.details: a default value for the "More information about this
+// update" link supplied in the "An update is available" page of the update
+// wizard.
+#if MOZ_UPDATE_CHANNEL == beta
+  pref("app.update.url.manual", "https://contextcol.com");
+  pref("app.update.url.details", "https://contextcol.com");
+  pref("app.releaseNotesURL", "https://contextcol.com");
+  pref("app.releaseNotesURL.aboutDialog", "https://contextcol.com");
+#elifdef MOZ_ESR
+  pref("app.update.url.manual", "https://contextcol.com");
+  pref("app.update.url.details", "https://contextcol.com");
+  pref("app.releaseNotesURL", "https://contextcol.com");
+  pref("app.releaseNotesURL.aboutDialog", "https://contextcol.com");
+#else
+  pref("app.update.url.manual", "https://contextcol.com");
+  pref("app.update.url.details", "https://contextcol.com");
+  pref("app.releaseNotesURL", "https://contextcol.com");
+  pref("app.releaseNotesURL.aboutDialog", "https://contextcol.com");
+#endif
+pref("app.releaseNotesURL.prompt", "https://contextcol.com");
 
 // The number of days a binary is permitted to be old
 // without checking for an update.  This assumes that

@@ -55,13 +55,13 @@ $in-content-page-color-dark: var(--text-color);
 // match these colors here to avoid flashing.
 
 $in-content-page-background: #F9F9FB;
-$in-content-page-background-dark: #2B2A33;
+$in-content-page-background-dark: #0d0d0f;
 $newtab-background-secondary: var(--color-white);
-$newtab-background-secondary-dark: rgb(66, 65, 77);
+$newtab-background-secondary-dark: rgb(26, 25, 33);
 
 // Mirrors $newtab-background-secondary with 20% opacity
 $newtab-background-card: color-mix(in srgb, var(--color-white) 80%, transparent);
-$newtab-background-card-dark: rgb(66, 65, 77, 80%);
+$newtab-background-card-dark: rgba(26, 25, 33, 0.9);
 
 // Photon transitions from http://design.firefox.com/photon/motion/duration-and-easing.html
 $photon-easing: cubic-bezier(0.07, 0.95, 0, 1);

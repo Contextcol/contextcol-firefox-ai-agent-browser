@@ -2,11 +2,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+:root {
+  /* Contextcol Brand Colors for Add-ons Shortcuts */
+  --contextcol-primary: #10b981;
+  --contextcol-light: #1fcfa1;
+  --contextcol-dark: #047857;
+  --contextcol-accent: #059669;
+}
+
 .shortcut.card {
   margin-bottom: 16px;
 
   &.focused-extension {
-    border: 1px solid var(--color-accent-primary);
+    border: 1px solid var(--contextcol-primary);
   }
 
   .card-heading-icon {

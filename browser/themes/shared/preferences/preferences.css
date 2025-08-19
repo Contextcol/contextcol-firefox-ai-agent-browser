@@ -13,6 +13,13 @@
    */
   --heading-font-size-xlarge: var(--font-size-xlarge);
   --heading-font-size-large: var(--font-size-large);
+
+  /* Contextcol Brand Colors */
+  --contextcol-primary: #10b981;
+  --contextcol-light: #1fcfa1;
+  --contextcol-dark: #047857;
+  --contextcol-accent: #059669;
+
   user-select: text;
 }
 
@@ -168,8 +175,8 @@ radio {
 }
 
 .spotlight {
-  background-color: color-mix(in srgb, var(--color-accent-primary) 15%, transparent);
-  outline: var(--color-accent-primary) 1px dotted;
+  background-color: color-mix(in srgb, var(--contextcol-primary) 15%, transparent);
+  outline: var(--contextcol-primary) 1px dotted;
   animation: fade-out 0.5s ease-out 2s forwards;
   /* Show the border to spotlight the components in high-contrast mode. */
   border: 1px solid transparent;
@@ -518,7 +525,7 @@ a[is="moz-support-link"]:not(.sidebar-footer-link, [hidden]) {
 #blocklistsTree > treechildren::-moz-tree-image(selectionCol, checked) {
   list-style-image: url("chrome://global/skin/icons/check.svg");
   -moz-context-properties: fill, stroke;
-  fill: var(--color-accent-primary);
+  fill: var(--contextcol-primary);
 }
 
 #engineList > treechildren::-moz-tree-image(engineShown, checked, selected),
@@ -740,11 +747,11 @@ html|dialog,
 }
 
 .fxaProfileImage.actionable:hover {
-  border-color: #0095dd;
+  border-color: var(--contextcol-primary);
 }
 
 .fxaProfileImage.actionable:hover:active {
-  border-color: #ff9500;
+  border-color: var(--contextcol-accent);
 }
 
 #useFirefoxSync {
@@ -934,7 +941,7 @@ dialog > .sync-engines-list + hbox {
   margin-inline-end: 8px;
   content: url("chrome://global/skin/icons/loading.svg");
   -moz-context-properties: fill;
-  fill: var(--color-accent-primary);
+  fill: var(--contextcol-primary);
 }
 
 .navigation {
@@ -1033,9 +1040,9 @@ dialog > .sync-engines-list + hbox {
   font-size: 1rem;
   position: absolute;
   padding: 0 0.7em;
-  background-color: #ffe900;
+  background-color: var(--contextcol-light);
   color: #000;
-  border: 1px solid #d7b600;
+  border: 1px solid var(--contextcol-primary);
   margin-top: -18px;
   opacity: 0.85;
 }
@@ -1048,7 +1055,7 @@ dialog > .sync-engines-list + hbox {
   position: absolute;
   content: "";
   border: 7px solid transparent;
-  border-top-color: #d7b600;
+  border-top-color: var(--contextcol-primary);
   top: 100%;
   inset-inline-start: calc(50% - 7px);
   forced-color-adjust: none;
@@ -1058,7 +1065,7 @@ dialog > .sync-engines-list + hbox {
   position: absolute;
   content: "";
   border: 6px solid transparent;
-  border-top-color: #ffe900;
+  border-top-color: var(--contextcol-light);
   top: 100%;
   inset-inline-start: calc(50% - 6px);
   forced-color-adjust: none;
@@ -1549,4 +1556,124 @@ richlistitem .text-link:hover {
   > a {
     font-size: var(--font-size-small);
   }
+}
+
+/* Contextcol Preferences Enhancements */
+.category[selected="true"] {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 15%, transparent) !important;
+  border-inline-start: 3px solid var(--contextcol-primary) !important;
+}
+
+.category:hover:not([selected="true"]) {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 8%, transparent) !important;
+}
+
+/* Enhance buttons with Contextcol styling */
+button[type="submit"],
+button.primary {
+  background-color: var(--contextcol-primary) !important;
+  border-color: var(--contextcol-primary) !important;
+  color: white !important;
+}
+
+button[type="submit"]:hover,
+button.primary:hover {
+  background-color: var(--contextcol-accent) !important;
+  border-color: var(--contextcol-accent) !important;
+}
+
+/* Enhanced checkbox styling */
+checkbox[checked="true"] > .checkbox-check {
+  background-color: var(--contextcol-primary) !important;
+  border-color: var(--contextcol-primary) !important;
+}
+
+/* Enhanced radio button styling */
+radio[selected="true"] > .radio-check {
+  background-color: var(--contextcol-primary) !important;
+  border-color: var(--contextcol-primary) !important;
+}
+
+/* Link styling */
+a,
+.text-link {
+  color: var(--contextcol-primary) !important;
+}
+
+a:hover,
+.text-link:hover {
+  color: var(--contextcol-accent) !important;
+}
+
+/* Focus styling */
+*:focus {
+  outline-color: var(--contextcol-primary) !important;
+}
+
+/* Section headers with Contextcol accent */
+.section-heading {
+  border-left: 3px solid var(--contextcol-primary);
+  padding-left: var(--space-medium);
+  margin-left: calc(-1 * var(--space-medium));
+}
+
+/* Allow proper scrolling and functionality */
+.main-content {
+  overflow: auto;
+}
+
+/* Ensure navigation categories work properly */
+#categories {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.category {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Ensure sections display properly when selected */
+[data-category]:not([hidden]) {
+  display: block;
+  visibility: visible;
+}
+
+/* Make sure pane container allows proper navigation */
+.pane-container {
+  display: block;
+  min-height: auto;
+  overflow: visible;
+}
+
+/* Ensure HTML templates display their content properly */
+html\:template {
+  display: none;
+}
+
+/* Make sure template content is visible when instantiated */
+#mainPrefPane > [data-category] {
+  opacity: 1;
+}
+
+/* Fix any z-index issues that might block clicks */
+.sticky-container {
+  z-index: var(--z-index-sticky-container, 5);
+}
+
+/* Ensure buttons and interactive elements are clickable */
+button,
+input,
+select,
+textarea,
+.category {
+  pointer-events: auto;
+  position: relative;
+}
+
+/* Make sure the main preference pane is scrollable */
+#mainPrefPane {
+  overflow: visible;
+  min-height: fit-content;
 }

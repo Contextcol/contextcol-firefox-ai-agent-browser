@@ -8,6 +8,12 @@
   --sidebar-width: var(--in-content-sidebar-width);
   --z-index-sticky-container: 5;
   --z-index-popup: 10;
+
+  /* Contextcol Brand Colors for Add-ons Manager */
+  --contextcol-primary: #10b981;
+  --contextcol-light: #1fcfa1;
+  --contextcol-dark: #047857;
+  --contextcol-accent: #059669;
 }
 
 @media (max-width: 830px) {
@@ -16,6 +22,48 @@
     /* Maintain a main margin so card shadows don't overlap the sidebar. */
     --sidebar-width: calc(var(--in-content-sidebar-width) - var(--main-margin-start));
   }
+}
+
+/* Contextcol Addons Manager Enhancements */
+.category[selected] {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 15%, transparent) !important;
+  border-inline-start: 3px solid var(--contextcol-primary) !important;
+}
+
+.category:hover:not([selected]) {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 8%, transparent) !important;
+}
+
+/* Enhanced button styling */
+button.primary,
+button[type="submit"],
+button.recommended,
+panel-item[action="install"] {
+  background-color: var(--contextcol-primary) !important;
+  border-color: var(--contextcol-primary) !important;
+  color: white !important;
+}
+
+button.primary:hover,
+button[type="submit"]:hover,
+button.recommended:hover,
+panel-item[action="install"]:hover {
+  background-color: var(--contextcol-accent) !important;
+  border-color: var(--contextcol-accent) !important;
+}
+
+/* Links styling */
+a {
+  color: var(--contextcol-primary) !important;
+}
+
+a:hover {
+  color: var(--contextcol-accent) !important;
+}
+
+/* Focus styling */
+*:focus {
+  outline-color: var(--contextcol-primary) !important;
 }
 
 *|*[hidden] {
@@ -81,8 +129,8 @@ h2 {
 .category[badge-count]::after {
   display: inline-block;
   min-width: 20px;
-  background-color: var(--color-accent-primary);
-  color: var(--button-text-color-primary);
+  background-color: var(--contextcol-primary);
+  color: white;
   font-weight: bold;
   /* Use a large border-radius to get semi-circles on the sides. */
   border-radius: 1000px;
@@ -362,12 +410,12 @@ addon-card[expanded] .update-postponed-bar + .addon-card-message {
 
 .addon-badge-recommended,
 .addon-badge-line {
-  border: 1px solid #cfcfd8;
+  border: 1px solid var(--contextcol-primary);
   width: 20px;
   height: 20px;
 
   @media (prefers-color-scheme: dark) {
-    border-color: #3a3944;
+    border-color: var(--contextcol-dark);
   }
 }
 
@@ -631,7 +679,7 @@ button.addon-detail-description-toggle {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--color-accent-primary);
+  background-color: var(--contextcol-primary);
 }
 
 panel-item[action="remove"]::part(button) {
@@ -759,14 +807,14 @@ button.tab-button:hover {
 button.tab-button[selected],
 button.tab-button[selected]:hover {
   border-top-color: currentColor;
-  color: var(--color-accent-primary);
+  color: var(--contextcol-primary);
 }
 
 @media (prefers-contrast) {
   button.tab-button[selected],
   button.tab-button[selected]:hover {
-    color: var(--button-text-color-primary);
-    background-color: var(--button-background-color-primary);
+    color: white;
+    background-color: var(--contextcol-primary);
   }
 }
 
