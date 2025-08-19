@@ -8,6 +8,12 @@
   --urlbar-container-padding: 1px;
   --urlbar-margin-inline: 5px;
   --urlbar-padding-block: 4px;
+
+  /* Contextcol Brand Colors for URL Bar */
+  --contextcol-primary: #10b981;
+  --contextcol-light: #1fcfa1;
+  --contextcol-dark: #047857;
+  --contextcol-accent: #059669;
 }
 
 #urlbar[actiontype="switchtab"][action-override] > .urlbar-input-container > #urlbar-label-box,
@@ -1273,4 +1279,39 @@
       }
     }
   }
+}
+
+/* Contextcol URL Bar Theming */
+.urlbar[focused]:not([suppress-focus-border]) > .urlbar-background,
+#searchbar:focus-within {
+  outline-color: var(--contextcol-primary) !important;
+  border-color: var(--contextcol-primary) !important;
+}
+
+/* Override focus outline colors */
+:root {
+  --toolbar-field-focus-border-color: var(--contextcol-primary);
+  --focus-outline-color: var(--contextcol-primary);
+}
+
+/* Ensure search suggestions use Contextcol colors */
+.urlbar-input-container[pageproxystate="valid"] .urlbar-input {
+  color: inherit;
+}
+
+/* Style the identity box and URL parts with Contextcol theme */
+#identity-box:hover,
+#identity-box[open] {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 15%, transparent);
+}
+
+/* Go button theming */
+.urlbar-go-button:hover {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 15%, transparent);
+}
+
+/* Search mode indicator theming */
+#urlbar-search-mode-indicator {
+  background-color: var(--contextcol-light);
+  color: var(--contextcol-dark);
 }

@@ -13,6 +13,12 @@
   --urlbarView-highlight-background: SelectedItem;
   --urlbarView-highlight-color: SelectedItemText;
 
+  /* Contextcol Brand Colors for URL Bar View */
+  --contextcol-primary: #10b981;
+  --contextcol-light: #1fcfa1;
+  --contextcol-dark: #047857;
+  --contextcol-accent: #059669;
+
   --urlbarView-secondary-text-color: color-mix(in srgb, currentColor 73%, transparent);
 
   --urlbarView-action-color: LinkText;
@@ -69,8 +75,8 @@
   }
 
   &[lwtheme] {
-    --urlbarView-action-color: light-dark(rgb(91, 91, 102), rgb(191, 191, 201));
-    --urlbarView-highlight-background: light-dark(rgb(0, 99, 255), rgb(0, 99, 225));
+    --urlbarView-action-color: var(--contextcol-primary);
+    --urlbarView-highlight-background: var(--contextcol-primary);
     --urlbarView-highlight-color: white;
   }
 
@@ -1421,4 +1427,30 @@
 #PopupSearchAutoComplete .autocomplete-richlistitem[selected] {
   background: var(--urlbarView-highlight-background);
   color: var(--urlbarView-highlight-color);
+}
+
+/* Contextcol URL Bar View Theming */
+.urlbarView-row[selected] {
+  background-color: var(--contextcol-primary) !important;
+  color: white !important;
+}
+
+.urlbarView-row:hover {
+  background-color: color-mix(in srgb, var(--contextcol-primary) 15%, transparent) !important;
+}
+
+/* URL suggestion action text */
+.urlbarView-action {
+  color: var(--contextcol-primary) !important;
+}
+
+/* Search suggestion icons and text */
+.urlbarView-secondary-text {
+  color: var(--contextcol-accent);
+}
+
+/* URL bar suggestion highlighting */
+.urlbarView-highlight {
+  background-color: var(--contextcol-light);
+  color: var(--contextcol-dark);
 }

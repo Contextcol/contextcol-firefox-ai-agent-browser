@@ -356,12 +356,12 @@ export class BaseContent extends React.PureComponent {
             webpage_url: webpage.url,
           })}
         >
-          <a data-l10n-name="name-link" href={authorDetails.url}>
+          {/* <a data-l10n-name="name-link" href={authorDetails.url}>
             {authorDetails.string}
           </a>
           <a data-l10n-name="webpage-link" href={webpage.url}>
             {webpage.string}
-          </a>
+          </a> */}
         </p>
       );
     }
