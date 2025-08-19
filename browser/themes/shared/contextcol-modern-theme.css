@@ -1,0 +1,362 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* Contextcol AI Agent Browser - Modern Theme System */
+
+:root {
+  /* Enhanced Contextcol Color Palette */
+  --contextcol-primary: #10b981;
+  --contextcol-light: #1fcfa1;
+  --contextcol-dark: #047857;
+  --contextcol-accent: #34d399;
+  --contextcol-muted: rgba(16, 185, 129, 0.1);
+
+  /* Modern spacing and sizing */
+  --contextcol-border-radius-small: 8px;
+  --contextcol-border-radius-medium: 12px;
+  --contextcol-border-radius-large: 16px;
+  --contextcol-border-radius-xl: 20px;
+
+  /* Enhanced typography */
+  --contextcol-font-weight-light: 300;
+  --contextcol-font-weight-normal: 400;
+  --contextcol-font-weight-medium: 500;
+  --contextcol-font-weight-semibold: 600;
+  --contextcol-font-weight-bold: 700;
+
+  /* Modern elevation system */
+  --contextcol-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --contextcol-elevation-2: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --contextcol-elevation-3: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --contextcol-elevation-4: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --contextcol-elevation-contextcol: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Modern Window Styling */
+#main-window {
+  border-radius: var(--contextcol-border-radius-medium);
+  box-shadow: var(--contextcol-elevation-4);
+  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* Enhanced Toolbar Styling */
+#navigator-toolbox {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(30px);
+  border-radius: var(--contextcol-border-radius-medium);
+  margin: 4px;
+  box-shadow: var(--contextcol-elevation-2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modern Tab Styling */
+.tabbrowser-tab {
+  margin: 2px;
+  overflow: visible;
+}
+
+.tab-background {
+  border-radius: var(--contextcol-border-radius-medium);
+  backdrop-filter: blur(15px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tabbrowser-tab:hover .tab-background::before {
+  opacity: 1;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(31, 207, 161, 0.1) 100%);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow:
+    var(--contextcol-elevation-3),
+    0 0 0 1px rgba(16, 185, 129, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.tabbrowser-tab[selected] .tab-background::before {
+  opacity: 0;
+}
+
+/* Enhanced URL Bar */
+#urlbar {
+  border-radius: var(--contextcol-border-radius-large);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--contextcol-elevation-2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 4px 0;
+}
+
+#urlbar[focused] {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow:
+    var(--contextcol-elevation-3),
+    0 0 0 3px rgba(16, 185, 129, 0.15),
+    var(--contextcol-elevation-contextcol);
+  transform: translateY(-1px);
+}
+
+#urlbar:hover:not([focused]) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-0.5px);
+}
+
+/* Modern Button Styling */
+.toolbarbutton-1 {
+  border-radius: var(--contextcol-border-radius-small);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+}
+
+.toolbarbutton-1:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: var(--contextcol-elevation-2);
+}
+
+.toolbarbutton-1:active {
+  transform: translateY(0);
+  box-shadow: var(--contextcol-elevation-1);
+}
+
+/* Enhanced Menu and Dropdown Styling */
+menupopup,
+panel,
+.panel-subview-body {
+  border-radius: var(--contextcol-border-radius-medium);
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--contextcol-elevation-4);
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  menupopup,
+  panel,
+  .panel-subview-body {
+    background: rgba(28, 28, 34, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.panel-arrowcontent {
+  border-radius: inherit;
+}
+
+.panel-arrow {
+  display: none; /* Hide arrow for cleaner look */
+}
+
+/* Modern Menu Items */
+menuitem,
+.subviewbutton {
+  border-radius: var(--contextcol-border-radius-small);
+  margin: 2px 6px;
+  backdrop-filter: blur(5px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+menuitem:hover,
+.subviewbutton:hover {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  transform: translateX(2px);
+  border-left: 3px solid var(--contextcol-primary);
+}
+
+/* Enhanced Sidebar */
+#sidebar-box {
+  border-radius: var(--contextcol-border-radius-medium);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 4px;
+  box-shadow: var(--contextcol-elevation-2);
+}
+
+/* Modern Notification Styling */
+notification {
+  border-radius: var(--contextcol-border-radius-medium);
+  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(31, 207, 161, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--contextcol-elevation-3);
+  color: white;
+  margin: 4px;
+}
+
+/* Enhanced Find Bar */
+.findbar {
+  border-radius: var(--contextcol-border-radius-medium);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--contextcol-elevation-2);
+}
+
+/* Modern Status Panel */
+.statuspanel-label {
+  border-radius: var(--contextcol-border-radius-small);
+  backdrop-filter: blur(15px);
+  background: rgba(28, 28, 34, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--contextcol-elevation-2);
+  color: white;
+}
+
+/* Enhanced Context Menu */
+.context-menu {
+  border-radius: var(--contextcol-border-radius-medium);
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--contextcol-elevation-4);
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .context-menu {
+    background: rgba(28, 28, 34, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Modern Form Controls */
+input[type="text"],
+input[type="search"],
+input[type="password"],
+textarea {
+  border-radius: var(--contextcol-border-radius-small);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--contextcol-primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Enhanced Selection Highlighting */
+::selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: inherit;
+}
+
+/* Modern Focus Indicators */
+*:focus-visible {
+  outline: 2px solid var(--contextcol-primary);
+  outline-offset: 2px;
+  border-radius: var(--contextcol-border-radius-small);
+}
+
+/* Enhanced Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .tab-background,
+  #urlbar,
+  .toolbarbutton-1 {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+}
+
+/* Dark theme specific enhancements */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --contextcol-primary: #1fcfa1;
+    --contextcol-light: #34d399;
+    --contextcol-dark: #059669;
+  }
+
+  #main-window {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+  }
+
+  #navigator-toolbox {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .tab-background::before {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  }
+
+  #urlbar {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  #urlbar[focused] {
+    background: rgba(0, 0, 0, 0.12);
+    border-color: rgba(31, 207, 161, 0.5);
+    box-shadow:
+      var(--contextcol-elevation-3),
+      0 0 0 3px rgba(31, 207, 161, 0.15),
+      0 0 20px rgba(31, 207, 161, 0.4);
+  }
+}
+
+/* Smooth animations for modern feel */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced visual hierarchy */
+.contextcol-primary-text {
+  color: var(--contextcol-primary);
+  font-weight: var(--contextcol-font-weight-semibold);
+}
+
+.contextcol-muted-text {
+  color: rgba(16, 185, 129, 0.7);
+  font-weight: var(--contextcol-font-weight-normal);
+}
+
+.contextcol-accent-bg {
+  background: linear-gradient(135deg, var(--contextcol-primary) 0%, var(--contextcol-light) 100%);
+  color: white;
+  border-radius: var(--contextcol-border-radius-medium);
+  padding: 8px 16px;
+  box-shadow: var(--contextcol-elevation-contextcol);
+}

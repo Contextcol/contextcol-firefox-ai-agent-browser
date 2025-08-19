@@ -10,17 +10,17 @@
   --contextcol-ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
   --contextcol-ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --contextcol-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
+
   /* Enhanced transition durations */
   --contextcol-transition-fast: 150ms;
   --contextcol-transition-medium: 250ms;
   --contextcol-transition-slow: 400ms;
-  
+
   /* Modern glassmorphism effects */
   --contextcol-glass-bg: rgba(255, 255, 255, 0.1);
   --contextcol-glass-border: rgba(255, 255, 255, 0.2);
   --contextcol-glass-backdrop: blur(20px) saturate(1.5);
-  
+
   /* Enhanced shadow system */
   --contextcol-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --contextcol-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -110,7 +110,7 @@
 
 #urlbar[focused] {
   transform: scale(1.02);
-  box-shadow: 
+  box-shadow:
     var(--contextcol-shadow-lg),
     0 0 0 3px rgba(16, 185, 129, 0.2);
   background: rgba(255, 255, 255, 0.15);
@@ -198,7 +198,8 @@ notification {
 }
 
 @keyframes contextcol-attention-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     filter: brightness(1);
   }
@@ -216,7 +217,8 @@ notification {
 }
 
 @keyframes contextcol-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -268,27 +270,49 @@ notification {
 .titlebar-button {
   transition: all var(--contextcol-transition-fast) var(--contextcol-ease-out-expo);
   border-radius: 50%;
+  backdrop-filter: blur(10px);
 }
 
 .titlebar-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
   backdrop-filter: var(--contextcol-glass-backdrop);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .titlebar-close:hover {
-  background-color: #ff5f56;
+  background: linear-gradient(135deg, #ff5f56, #ff3b30);
   color: white;
+  box-shadow: 0 4px 15px rgba(255, 95, 86, 0.4);
 }
 
 .titlebar-minimize:hover {
-  background-color: #ffbd2e;
+  background: linear-gradient(135deg, #ffbd2e, #ff9500);
   color: white;
+  box-shadow: 0 4px 15px rgba(255, 189, 46, 0.4);
 }
 
 .titlebar-restore:hover,
 .titlebar-maximize:hover {
-  background-color: #28ca42;
+  background: linear-gradient(135deg, #28ca42, #30d158);
   color: white;
+  box-shadow: 0 4px 15px rgba(40, 202, 66, 0.4);
+}
+
+/* Rounded window corners */
+#main-window {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Enhanced toolbar with rounded corners and glassmorphism */
+#nav-bar,
+#PersonalToolbar,
+#TabsToolbar {
+  border-radius: 8px;
+  margin: 2px 4px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Modern context menu effects */
@@ -312,4 +336,105 @@ notification {
 .browserContainer[loading] {
   opacity: 0.8;
   filter: blur(1px);
+}
+
+/* Contextcol Loading Progress Bar */
+.contextcol-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--contextcol-primary, #10b981) 0%, var(--contextcol-light, #1fcfa1) 50%, var(--contextcol-primary, #10b981) 100%);
+  background-size: 200% 100%;
+  /* animation: contextcol-loading-sweep 2s ease-in-out infinite; */
+  z-index: 10000;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s var(--contextcol-ease-out-expo);
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+}
+
+.contextcol-loading-bar[data-loading="true"] {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: contextcol-loading-sweep 2s ease-in-out infinite;
+}
+
+.contextcol-loading-bar[data-loading="complete"] {
+  animation: contextcol-loading-complete 0.5s ease-out forwards;
+}
+
+@keyframes contextcol-loading-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes contextcol-loading-complete {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.1);
+  }
+}
+
+/* Enhanced tab loading with Contextcol branding */
+.tabbrowser-tab[busy] .tab-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--contextcol-primary, #10b981) 20%,
+    var(--contextcol-light, #1fcfa1) 50%,
+    var(--contextcol-primary, #10b981) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: contextcol-tab-loading 1.5s ease-in-out infinite;
+  border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0;
+}
+
+@keyframes contextcol-tab-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Contextcol themed scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, var(--contextcol-primary, #10b981), var(--contextcol-light, #1fcfa1));
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, var(--contextcol-dark, #047857), var(--contextcol-primary, #10b981));
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }

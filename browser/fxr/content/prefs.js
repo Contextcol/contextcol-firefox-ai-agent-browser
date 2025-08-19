@@ -103,9 +103,9 @@ function initParentDependencies() {
     });
 
     // Load the relevant URLs into the top UI's <browser>
-    document.getElementById("ePrivacyPolicy").addEventListener("click", () => {
-      window.parent.showPrivacyPolicy();
-    });
+    // document.getElementById("ePrivacyPolicy").addEventListener("click", () => {
+    //   window.parent.showPrivacyPolicy();
+    // });
 
     document.getElementById("eLicenseInfo").addEventListener("click", () => {
       window.parent.showLicenseInfo();
