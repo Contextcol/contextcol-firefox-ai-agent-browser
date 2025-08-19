@@ -488,6 +488,24 @@ export class BaseContent extends React.PureComponent {
     this.setState({ showDownloadHighlightOverride: false });
   }
 
+  handleAIRequest(request) {
+    if (!request || !request.trim()) {
+      return;
+    }
+
+    // You could dispatch an action to handle the AI request
+    // this.props.dispatch(ac.OnlyToMain({
+    //   type: at.AI_AGENT_REQUEST,
+    //   data: { request: request.trim() }
+    // }));
+
+    // Clear the textarea
+    const textarea = document.querySelector(".contextcol-ai-textarea");
+    if (textarea) {
+      textarea.value = "";
+    }
+  }
+
   getRGBColors(input) {
     if (input.length !== 7) {
       return [];
@@ -704,6 +722,47 @@ export class BaseContent extends React.PureComponent {
     const shouldShowDownloadHighlight =
       this.state.showDownloadHighlightOverride ??
       this.shouldShowOMCHighlight("DownloadMobilePromoHighlight");
+
+    // Check if we should show the simplified AI Agent interface
+    const showSimplifiedInterface = true; // Always show simplified interface for Contextcol
+
+    if (showSimplifiedInterface) {
+      return (
+        <div className="contextcol-ai-interface">
+          <div className="contextcol-main-wrapper">
+            <div className="contextcol-hero-section">
+              <h1 className="contextcol-title">
+                How Contextcol help your business tasks on Browser today?
+              </h1>
+              <div className="contextcol-textarea-container">
+                <textarea
+                  className="contextcol-ai-textarea"
+                  placeholder="Describe what you'd like me to help you with on this browser..."
+                  rows={4}
+                  onKeyDown={e => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      // Handle AI request submission
+                      this.handleAIRequest(e.target.value);
+                    }
+                  }}
+                />
+                <button
+                  className="contextcol-submit-btn"
+                  onClick={e => {
+                    const textarea = e.target.previousElementSibling;
+                    this.handleAIRequest(textarea.value);
+                  }}
+                >
+                  Start AI Agent
+                </button>
+              </div>
+            </div>
+            {wallpapersEnabled && this.renderWallpaperAttribution()}
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className={featureClassName}>

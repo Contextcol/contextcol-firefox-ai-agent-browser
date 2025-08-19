@@ -82,7 +82,12 @@
 /* stylelint-disable-next-line media-query-no-invalid */
 @media not ((prefers-contrast) or -moz-pref("browser.theme.native-theme")) {
   :root:not([lwtheme]) {
-    --color-accent-primary: light-dark(rgb(0, 97, 224), rgb(0, 221, 255));
+    /* Contextcol AI Agent Browser Branding Colors */
+    --contextcol-primary: #10b981;
+    --contextcol-light: #1fcfa1;
+    --contextcol-dark: #047857;
+    
+    --color-accent-primary: light-dark(var(--contextcol-primary), var(--contextcol-light));
     --button-text-color-primary: light-dark(rgb(251, 251, 254), rgb(43, 42, 51));
     --button-background-color: light-dark(rgba(207, 207, 216, 0.33), rgba(0, 0, 0, 0.33));
     --button-background-color-hover: light-dark(rgba(207, 207, 216, 0.66), rgba(207, 207, 216, 0.2));

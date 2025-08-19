@@ -1,0 +1,315 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* Contextcol AI Agent Browser - Modern Animations & Effects */
+
+:root {
+  /* Enhanced animation timing functions for smooth UX */
+  --contextcol-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --contextcol-ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --contextcol-ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --contextcol-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Enhanced transition durations */
+  --contextcol-transition-fast: 150ms;
+  --contextcol-transition-medium: 250ms;
+  --contextcol-transition-slow: 400ms;
+  
+  /* Modern glassmorphism effects */
+  --contextcol-glass-bg: rgba(255, 255, 255, 0.1);
+  --contextcol-glass-border: rgba(255, 255, 255, 0.2);
+  --contextcol-glass-backdrop: blur(20px) saturate(1.5);
+  
+  /* Enhanced shadow system */
+  --contextcol-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --contextcol-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --contextcol-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.2);
+  --contextcol-shadow-glow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Enhanced toolbar animations */
+#nav-bar,
+#PersonalToolbar {
+  transition: all var(--contextcol-transition-medium) var(--contextcol-ease-out-expo);
+}
+
+/* Modern button hover effects */
+.toolbarbutton-1 {
+  transition: all var(--contextcol-transition-fast) var(--contextcol-ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.toolbarbutton-1:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: var(--contextcol-shadow-sm);
+}
+
+.toolbarbutton-1:active {
+  transform: translateY(0);
+  transition-duration: 100ms;
+}
+
+/* Enhanced tab animations */
+.tabbrowser-tab {
+  transition: all var(--contextcol-transition-medium) var(--contextcol-ease-out-expo);
+  position: relative;
+}
+
+.tabbrowser-tab:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
+
+.tabbrowser-tab[selected] {
+  transform: scale(1.05);
+  box-shadow: var(--contextcol-shadow-md);
+  z-index: 10;
+}
+
+/* Smooth tab transitions */
+.tabbrowser-tab[fadein] {
+  animation: contextcol-tab-fadein var(--contextcol-transition-slow) var(--contextcol-ease-out-back);
+}
+
+.tabbrowser-tab[fadeout] {
+  animation: contextcol-tab-fadeout var(--contextcol-transition-medium) var(--contextcol-ease-in-out-circ);
+}
+
+@keyframes contextcol-tab-fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes contextcol-tab-fadeout {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+}
+
+/* Enhanced urlbar with glassmorphism */
+#urlbar {
+  transition: all var(--contextcol-transition-medium) var(--contextcol-ease-out-expo);
+  backdrop-filter: var(--contextcol-glass-backdrop);
+  background: var(--contextcol-glass-bg);
+  border: 1px solid var(--contextcol-glass-border);
+}
+
+#urlbar[focused] {
+  transform: scale(1.02);
+  box-shadow: 
+    var(--contextcol-shadow-lg),
+    0 0 0 3px rgba(16, 185, 129, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#urlbar:hover:not([focused]) {
+  transform: scale(1.01);
+  box-shadow: var(--contextcol-shadow-md);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Modern dropdown animations */
+.urlbarView {
+  animation: contextcol-dropdown-in var(--contextcol-transition-medium) var(--contextcol-ease-out-back);
+  backdrop-filter: var(--contextcol-glass-backdrop);
+  background: var(--contextcol-glass-bg);
+  border: 1px solid var(--contextcol-glass-border);
+}
+
+@keyframes contextcol-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced menu animations */
+menupopup,
+panel {
+  animation: contextcol-menu-in var(--contextcol-transition-medium) var(--contextcol-ease-out-expo);
+  backdrop-filter: var(--contextcol-glass-backdrop);
+}
+
+@keyframes contextcol-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Smooth sidebar animations */
+#sidebar-box {
+  transition: all var(--contextcol-transition-medium) var(--contextcol-ease-out-expo);
+}
+
+#sidebar-box[hidden] {
+  transform: translateX(-100%);
+}
+
+#sidebar-box:not([hidden]) {
+  transform: translateX(0);
+}
+
+/* Modern notification animations */
+notification {
+  animation: contextcol-notification-slide var(--contextcol-transition-slow) var(--contextcol-ease-out-back);
+}
+
+@keyframes contextcol-notification-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced download indicator */
+#downloads-indicator {
+  transition: all var(--contextcol-transition-fast) var(--contextcol-ease-out-expo);
+}
+
+#downloads-indicator[attention] {
+  animation: contextcol-attention-pulse 2s var(--contextcol-ease-in-out-circ) infinite;
+}
+
+@keyframes contextcol-attention-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    box-shadow: var(--contextcol-shadow-glow);
+  }
+}
+
+/* Floating effect for toolbar buttons */
+.toolbarbutton-1[open],
+.toolbarbutton-1[checked] {
+  animation: contextcol-float 3s var(--contextcol-ease-in-out-circ) infinite;
+}
+
+@keyframes contextcol-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Modern loading spinner */
+.loading-spinner {
+  animation: contextcol-spin 1s linear infinite;
+}
+
+@keyframes contextcol-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced focus states with Contextcol branding */
+:focus-visible {
+  outline: 2px solid var(--contextcol-primary, #10b981);
+  outline-offset: 2px;
+  transition: outline var(--contextcol-transition-fast) var(--contextcol-ease-out-expo);
+}
+
+/* Dark theme specific enhancements */
+:root[lwt-newtab-brighttext] {
+  --contextcol-glass-bg: rgba(0, 0, 0, 0.2);
+  --contextcol-glass-border: rgba(255, 255, 255, 0.1);
+  --contextcol-shadow-glow: 0 0 20px rgba(31, 207, 161, 0.4);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced window controls (close, minimize, maximize) */
+.titlebar-button {
+  transition: all var(--contextcol-transition-fast) var(--contextcol-ease-out-expo);
+  border-radius: 50%;
+}
+
+.titlebar-button:hover {
+  transform: scale(1.1);
+  backdrop-filter: var(--contextcol-glass-backdrop);
+}
+
+.titlebar-close:hover {
+  background-color: #ff5f56;
+  color: white;
+}
+
+.titlebar-minimize:hover {
+  background-color: #ffbd2e;
+  color: white;
+}
+
+.titlebar-restore:hover,
+.titlebar-maximize:hover {
+  background-color: #28ca42;
+  color: white;
+}
+
+/* Modern context menu effects */
+.contextmenu-item {
+  transition: all var(--contextcol-transition-fast) var(--contextcol-ease-out-expo);
+  border-radius: 4px;
+  margin: 2px 4px;
+}
+
+.contextmenu-item:hover {
+  transform: translateX(4px);
+  background: linear-gradient(90deg, var(--contextcol-primary, #10b981) 0%, transparent 100%);
+  color: white;
+}
+
+/* Smooth page transitions */
+.browserContainer {
+  transition: opacity var(--contextcol-transition-medium) var(--contextcol-ease-out-expo);
+}
+
+.browserContainer[loading] {
+  opacity: 0.8;
+  filter: blur(1px);
+}

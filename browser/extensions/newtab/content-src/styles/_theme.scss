@@ -38,9 +38,9 @@ $shadow-image-inset: inset 0 0 0 0.5px $black-15;
   // If we use that variable here, with light-dark, we can retain that addon theme text color,
   // and also have a fallback in case the wallpaper contrast doesn't match.
   --newtab-contextual-text-primary-color: light-dark(var(--newtab-text-primary-color), #{$in-content-page-color-dark});
-  --newtab-primary-action-background: light-dark(#{$primary-blue}, #{$primary-blue-dark});
-  // A button colour closer to the Pocket brand for usage in the Pocket section.
-  --newtab-primary-action-background-pocket: #008078;
+  --newtab-primary-action-background: light-dark(#10b981, #1fcfa1);
+  // Contextcol branding for button colors
+  --newtab-primary-action-background-pocket: #10b981;
   --newtab-text-secondary-color: color-mix(in srgb, var(--newtab-text-primary-color) 70%, transparent);
   --newtab-contextual-text-secondary-color: color-mix(in srgb, var(--newtab-contextual-text-primary-color) 70%, transparent);
 
@@ -103,14 +103,14 @@ $shadow-image-inset: inset 0 0 0 0.5px $black-15;
     // We export color-scheme because some addon themes might not work with light-dark and prefers-color-scheme.
     // If we add color-scheme here, we can still use light-dark
     color-scheme: dark;
-    // General styles
+    // General styles - Much darker theme
     --newtab-background-color: #{$in-content-page-background-dark};
     --newtab-background-color-secondary: #{$newtab-background-secondary-dark};
-    --newtab-text-primary-color: #{$in-content-page-color-dark};
+    --newtab-text-primary-color: #f8f9fa;
     // Card Background includes 20% transparency
     --newtab-background-card: #{$newtab-background-card-dark};
     --newtab-text-topic-label-color: var(--color-violet-30);
-    --newtab-text-secondary-text: #FBFBFEB0;
+    --newtab-text-secondary-text: #e2e8f0;
 
     --newtab-contextual-text-primary-color: light-dark(#{$in-content-page-color}, var(--newtab-text-primary-color));
     --newtab-primary-action-background-pocket: #{$primary-blue-dark};
