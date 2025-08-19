@@ -1,0 +1,658 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* Contextcol AI Interface - Minimal Clean Design */
+
+// Contextcol Minimal Theme - Clean & Professional
+:root {
+  --contextcol-primary: #10B981;
+  --contextcol-primary-hover: #059669;
+  --contextcol-primary-light: #34D399;
+  --contextcol-accent: #1FCFA1;
+  --contextcol-bg-primary: rgba(16, 185, 129, 0.05);
+  --contextcol-bg-secondary: rgba(16, 185, 129, 0.02);
+  --contextcol-border: rgba(16, 185, 129, 0.08);
+  --contextcol-text-primary: #F8FAFC;
+  --contextcol-text-secondary: #94A3B8;
+  --contextcol-surface: rgba(23, 23, 23, 0.4);
+  --contextcol-surface-elevated: rgba(23, 23, 23, 0.6);
+  --contextcol-shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --contextcol-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --contextcol-shadow-large: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --contextcol-backdrop-blur: blur(12px);
+}
+
+// Dark theme adjustments - keeping it minimal
+:root[lwt-newtab-brighttext] {
+  --contextcol-primary: #1FCFA1;
+  --contextcol-primary-hover: #10B981;
+  --contextcol-primary-light: #34D399;
+  --contextcol-accent: #22D3EE;
+  --contextcol-bg-primary: rgba(31, 207, 161, 0.06);
+  --contextcol-bg-secondary: rgba(31, 207, 161, 0.03);
+  --contextcol-border: rgba(31, 207, 161, 0.1);
+  --contextcol-text-primary: #F9FAFB;
+  --contextcol-text-secondary: #D1D5DB;
+  --contextcol-surface: rgba(23, 23, 23, 0.5);
+  --contextcol-surface-elevated: rgba(23, 23, 23, 0.7);
+  --contextcol-shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --contextcol-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --contextcol-shadow-large: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.contextcol-ai-interface {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  
+//   Minimal clean background with subtle Contextcol branding
+  background: 
+    // Very subtle grid pattern
+    linear-gradient(rgba(16, 185, 129, 0.008) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.008) 1px, transparent 1px),
+    // Minimal gradient accent
+    radial-gradient(ellipse at center top, rgba(16, 185, 129, 0.02) 0%, transparent 70%),
+    // Clean dark base
+    linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 100%);
+  background-size: 80px 80px, 80px 80px, 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0, center top, center center;
+  
+  // Minimal brand accent - no animation
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 8px;
+    height: 8px;
+    background: var(--contextcol-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+// Removed excessive animations for minimal design
+
+.contextcol-backdrop {
+  position: relative;
+  backdrop-filter: var(--contextcol-backdrop-blur);
+  background: rgba(23, 23, 23, 0.7);
+  background: transparent;
+  border-radius: 24px;
+  border: 1px solid var(--contextcol-border);
+  box-shadow: var(--contextcol-shadow-medium);
+  padding: 3rem;
+  max-width: 800px;
+  width: 100%;
+  animation: contextcol-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  // Minimal glass effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: var(--contextcol-bg-secondary);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+@keyframes contextcol-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.contextcol-content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+// Logo Section - Minimal Contextcol Branding
+.contextcol-logo-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contextcol-brand-mark {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+    
+    .contextcol-logo-core {
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+    }
+  }
+}
+
+.contextcol-logo-rings {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.contextcol-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: opacity 0.2s ease;
+}
+
+.contextcol-ring-outer {
+  width: 100%;
+  height: 100%;
+  border-color: var(--contextcol-primary);
+  opacity: 0.3;
+}
+
+.contextcol-ring-middle {
+  width: 75%;
+  height: 75%;
+  top: 12.5%;
+  left: 12.5%;
+  border-color: var(--contextcol-accent);
+  opacity: 0.2;
+}
+
+.contextcol-ring-inner {
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  border-color: var(--contextcol-primary-light);
+  opacity: 0.1;
+}
+
+.contextcol-logo-core {
+  position: relative;
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--contextcol-primary), var(--contextcol-accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--contextcol-shadow-soft);
+  transition: box-shadow 0.2s ease;
+}
+
+.contextcol-logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.contextcol-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contextcol-brand-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--contextcol-text-primary);
+  margin: 0;
+  background: linear-gradient(135deg, var(--contextcol-primary), var(--contextcol-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.015em;
+}
+
+.contextcol-brand-tagline {
+  font-size: 0.875rem;
+  color: var(--contextcol-text-secondary);
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+// Removed ring rotation animations for minimal design
+
+
+
+// Main CTA Container - Minimal Design
+.contextcol-cta-container {
+  position: relative;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+  
+  &.expanded {
+    .contextcol-cta-backdrop {
+      box-shadow: var(--contextcol-shadow-medium);
+      border-color: var(--contextcol-primary);
+    }
+  }
+  
+  &.dragging {
+    .contextcol-cta-backdrop {
+      border-color: var(--contextcol-primary);
+      background: var(--contextcol-bg-primary);
+    }
+  }
+}
+
+.contextcol-cta-backdrop {
+  background: rgba(23, 23, 23, 0.4);
+  backdrop-filter: var(--contextcol-backdrop-blur);
+  border: 1px solid var(--contextcol-border);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: var(--contextcol-shadow-soft);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--contextcol-bg-secondary);
+    opacity: 0.3;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}
+
+// Input Section
+.contextcol-input-section {
+  position: relative;
+  z-index: 2;
+}
+
+.contextcol-main-input {
+  width: 100%;
+  min-height: 60px;
+  max-height: 200px;
+  padding: 1rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--contextcol-text-primary);
+  font-size: 1.125rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &::placeholder {
+    color: var(--contextcol-text-secondary);
+    opacity: 0.8;
+  }
+  
+  &:focus {
+    &::placeholder {
+      opacity: 0.6;
+    }
+  }
+}
+
+// File Display
+.contextcol-files-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--contextcol-border);
+}
+
+.contextcol-file-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--contextcol-bg-primary);
+  border: 1px solid var(--contextcol-border);
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--contextcol-text-primary);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--contextcol-bg-secondary);
+    transform: translateY(-1px);
+  }
+}
+
+.contextcol-file-icon {
+  font-size: 1rem;
+}
+
+.contextcol-file-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contextcol-file-remove {
+  background: none;
+  border: none;
+  color: var(--contextcol-text-secondary);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+  }
+}
+
+// Actions Section
+.contextcol-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.contextcol-secondary-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contextcol-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--contextcol-border);
+  background: var(--contextcol-surface);
+  color: var(--contextcol-text-secondary);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: var(--contextcol-bg-primary);
+    color: var(--contextcol-primary);
+    border-color: var(--contextcol-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--contextcol-shadow-soft);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.contextcol-primary-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--contextcol-primary), var(--contextcol-primary-hover));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: var(--contextcol-shadow-soft);
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--contextcol-shadow-medium);
+    background: linear-gradient(135deg, var(--contextcol-primary-hover), var(--contextcol-primary));
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+  
+  &:hover:not(:disabled) svg {
+    transform: translateX(1px);
+  }
+}
+
+// Drag Overlay
+.contextcol-drag-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(16, 185, 129, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: contextcol-fade-in 0.2s ease;
+}
+
+.contextcol-drag-content {
+  text-align: center;
+  color: var(--contextcol-primary);
+  
+  svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+  
+  p {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+// Features Grid
+.contextcol-features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contextcol-feature-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--contextcol-bg-secondary);
+  border: 1px solid var(--contextcol-border);
+  border-radius: 16px;
+  color: var(--contextcol-text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: var(--contextcol-bg-primary);
+    border-color: var(--contextcol-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--contextcol-shadow-soft);
+  }
+}
+
+.contextcol-feature-icon {
+  font-size: 1.25rem;
+  filter: drop-shadow(0 1px 2px rgba(16, 185, 129, 0.2));
+}
+
+// Animations
+@keyframes contextcol-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .contextcol-ai-interface {
+    padding: 1rem;
+  }
+  
+  .contextcol-backdrop {
+    padding: 2rem;
+    border-radius: 20px;
+  }
+  
+  .contextcol-brand-mark {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .contextcol-logo-core {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .contextcol-logo-text {
+    font-size: 1.5rem;
+  }
+  
+  .contextcol-brand-name {
+    font-size: 1.75rem;
+  }
+  
+  .contextcol-main-input {
+    font-size: 1rem;
+    min-height: 50px;
+  }
+  
+  .contextcol-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .contextcol-primary-btn {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .contextcol-features-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .contextcol-feature-card {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contextcol-backdrop {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .contextcol-cta-backdrop {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+  
+  .contextcol-secondary-actions {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  :root {
+    --contextcol-border: rgba(16, 185, 129, 0.4);
+    --contextcol-bg-primary: rgba(16, 185, 129, 0.15);
+    --contextcol-bg-secondary: rgba(16, 185, 129, 0.08);
+  }
+  
+  .contextcol-backdrop {
+    border-width: 2px;
+  }
+  
+  .contextcol-action-btn,
+  .contextcol-feature-card {
+    border-width: 2px;
+  }
+}

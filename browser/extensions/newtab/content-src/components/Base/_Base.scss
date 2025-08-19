@@ -246,10 +246,10 @@ main {
 
 // Contextcol AI Agent Interface Styles
 .contextcol-ai-interface {
-  --contextcol-primary: #10b981;
-  --contextcol-light: #1fcfa1;
+  --contextcol-primary: #10B981;
+  --contextcol-light: #1FCFA1;
   --contextcol-dark: #047857;
-  
+
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -385,6 +385,7 @@ main {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -394,8 +395,8 @@ main {
 // Dark theme adjustments
 :root[lwt-newtab-brighttext] {
   .contextcol-ai-interface {
-    --contextcol-primary: #1fcfa1;
-    --contextcol-light: #34d399;
+    --contextcol-primary: #1FCFA1;
+    --contextcol-light: #34D399;
     --contextcol-dark: #059669;
   }
 
@@ -435,6 +436,71 @@ main {
   }
 }
 
+// Features section
+.contextcol-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-large);
+  margin-block-start: var(--space-xxlarge);
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.contextcol-feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-large);
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    transform: translateY(-4px);
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+    box-shadow: 
+      0 8px 25px rgba(16, 185, 129, 0.15),
+      0 0 0 1px rgba(16, 185, 129, 0.1);
+  }
+}
+
+.contextcol-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-medium);
+  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.2));
+}
+
+.contextcol-feature-text {
+  font-weight: 600;
+  font-size: var(--font-size-medium);
+  color: var(--newtab-text-primary-color);
+  opacity: 0.9;
+}
+
+// Dark theme adjustments for features
+:root[lwt-newtab-brighttext] {
+  .contextcol-feature-item {
+    background: rgba(31, 207, 161, 0.08);
+    border-color: rgba(31, 207, 161, 0.15);
+
+    &:hover {
+      background: rgba(31, 207, 161, 0.12);
+      border-color: rgba(31, 207, 161, 0.25);
+      box-shadow: 
+        0 8px 25px rgba(31, 207, 161, 0.2),
+        0 0 0 1px rgba(31, 207, 161, 0.15);
+    }
+  }
+
+  .contextcol-feature-icon {
+    filter: drop-shadow(0 2px 4px rgba(31, 207, 161, 0.3));
+  }
+}
+
 // Responsive design
 @media (max-width: 768px) {
   .contextcol-ai-interface {
@@ -457,5 +523,19 @@ main {
 
   .contextcol-submit-btn {
     padding: var(--space-medium) var(--space-large);
+  }
+
+  .contextcol-features {
+    grid-template-columns: 1fr;
+    gap: var(--space-medium);
+    margin-block-start: var(--space-large);
+  }
+
+  .contextcol-feature-item {
+    padding: var(--space-medium);
+  }
+
+  .contextcol-feature-icon {
+    font-size: 2rem;
   }
 }

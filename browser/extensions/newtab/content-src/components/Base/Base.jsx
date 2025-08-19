@@ -6,17 +6,15 @@ import { actionCreators as ac, actionTypes as at } from "common/Actions.mjs";
 import { DiscoveryStreamAdmin } from "content-src/components/DiscoveryStreamAdmin/DiscoveryStreamAdmin";
 import { ConfirmDialog } from "content-src/components/ConfirmDialog/ConfirmDialog";
 import { connect } from "react-redux";
-import { DiscoveryStreamBase } from "content-src/components/DiscoveryStreamBase/DiscoveryStreamBase";
 import { ErrorBoundary } from "content-src/components/ErrorBoundary/ErrorBoundary";
 import { CustomizeMenu } from "content-src/components/CustomizeMenu/CustomizeMenu";
 import React from "react";
 import { Search } from "content-src/components/Search/Search";
-import { Sections } from "content-src/components/Sections/Sections";
+import { ContextcolAIInterface } from "content-src/components/ContextcolAIInterface/ContextcolAIInterface";
 import { Logo } from "content-src/components/Logo/Logo";
 import { Weather } from "content-src/components/Weather/Weather";
 import { DownloadModalToggle } from "content-src/components/DownloadModalToggle/DownloadModalToggle";
 import { Notifications } from "content-src/components/Notifications/Notifications";
-import { TopicSelection } from "content-src/components/DiscoveryStreamComponents/TopicSelection/TopicSelection";
 import { DownloadMobilePromoHighlight } from "../DiscoveryStreamComponents/FeatureHighlight/DownloadMobilePromoHighlight";
 import { WallpaperFeatureHighlight } from "../DiscoveryStreamComponents/FeatureHighlight/WallpaperFeatureHighlight";
 import { MessageWrapper } from "content-src/components/MessageWrapper/MessageWrapper";
@@ -121,6 +119,9 @@ export class BaseContent extends React.PureComponent {
     this.toggleDownloadHighlight = this.toggleDownloadHighlight.bind(this);
     this.handleDismissDownloadHighlight =
       this.handleDismissDownloadHighlight.bind(this);
+    this.renderWallpaperAttribution =
+      this.renderWallpaperAttribution.bind(this);
+    this.handleAIRequest = this.handleAIRequest.bind(this);
     this.state = {
       fixedSearch: false,
       firstVisibleTimestamp: null,
@@ -573,9 +574,6 @@ export class BaseContent extends React.PureComponent {
     const activeWallpaper = prefs[`newtabWallpapers.wallpaper`];
     const wallpapersEnabled = prefs["newtabWallpapers.enabled"];
     const weatherEnabled = prefs.showWeather;
-    const { showTopicSelection } = DiscoveryStream;
-    const mayShowTopicSelection =
-      showTopicSelection && prefs["discoverystream.topicSelection.enabled"];
     const { pocketConfig } = prefs;
 
     const isDiscoveryStream =
@@ -615,7 +613,6 @@ export class BaseContent extends React.PureComponent {
       prefs[PREF_INFERRED_PERSONALIZATION_SYSTEM];
     const mayHaveWeather = prefs["system.showWeather"];
     const { mayHaveSponsoredTopSites } = prefs;
-    const supportUrl = prefs["support.url"];
 
     // Widgets experiment pref check
     const mayHaveWidgets = prefs["widgets.system.enabled"];
@@ -728,39 +725,11 @@ export class BaseContent extends React.PureComponent {
 
     if (showSimplifiedInterface) {
       return (
-        <div className="contextcol-ai-interface">
-          <div className="contextcol-main-wrapper">
-            <div className="contextcol-hero-section">
-              <h1 className="contextcol-title">
-                How Contextcol help your business tasks on Browser today?
-              </h1>
-              <div className="contextcol-textarea-container">
-                <textarea
-                  className="contextcol-ai-textarea"
-                  placeholder="Describe what you'd like me to help you with on this browser..."
-                  rows={4}
-                  onKeyDown={e => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      // Handle AI request submission
-                      this.handleAIRequest(e.target.value);
-                    }
-                  }}
-                />
-                <button
-                  className="contextcol-submit-btn"
-                  onClick={e => {
-                    const textarea = e.target.previousElementSibling;
-                    this.handleAIRequest(textarea.value);
-                  }}
-                >
-                  Start AI Agent
-                </button>
-              </div>
-            </div>
-            {wallpapersEnabled && this.renderWallpaperAttribution()}
-          </div>
-        </div>
+        <ContextcolAIInterface
+          wallpapersEnabled={wallpapersEnabled}
+          renderWallpaperAttribution={this.renderWallpaperAttribution}
+          onAIRequest={this.handleAIRequest}
+        />
       );
     }
 
@@ -848,9 +817,9 @@ export class BaseContent extends React.PureComponent {
               </div>
             )}
             {/* Bug 1914055: Show logo regardless if search is enabled */}
-            {!prefs.showSearch && !noSectionsEnabled && <Logo />}
+            {/* {!prefs.showSearch && !noSectionsEnabled && <Logo />} */}
             <div className={`body-wrapper${initialized ? " on" : ""}`}>
-              {isDiscoveryStream ? (
+              {/* {isDiscoveryStream ? (
                 <ErrorBoundary className="borderless-error">
                   <DiscoveryStreamBase
                     locale={props.App.locale}
@@ -860,7 +829,7 @@ export class BaseContent extends React.PureComponent {
                 </ErrorBoundary>
               ) : (
                 <Sections />
-              )}
+              )} */}
             </div>
             <ConfirmDialog />
             {wallpapersEnabled && this.renderWallpaperAttribution()}
@@ -873,9 +842,9 @@ export class BaseContent extends React.PureComponent {
             )}
           </aside>
           {/* Only show the modal on currently visible pages (not preloaded) */}
-          {mayShowTopicSelection && pocketEnabled && (
+          {/* {mayShowTopicSelection && pocketEnabled && (
             <TopicSelection supportUrl={supportUrl} />
-          )}
+          )} */}
         </div>
       </div>
     );
